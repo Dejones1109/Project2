@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Signin";
+
+
+}
+
+
+
+<html>
+
+<body id="LoginForm">
+    <div class="login-form ">
+        <div class="main-div">
+            <div class="panel">
+                <h4>Đăng kí Tài Khoản </h4>
+                <p>Đăng kí theo mã số sinh viên của bạn.</p>
+                
+            </div>
+            <form method="post" asp-action="register">
+                <div class="form-group">
+                    <input type="email" id="email" class="form-control" placeholder="Email">
+
+                </div>
+
+
+                <div class="form-group">
+                    <input type="number"  id="mssv" class="form-control" placeholder="MSSV">
+                </div>
+
+                <div class="form-group ">
+
+                    <input type="password"  id="password" class="form-control" placeholder="Password">
+
+                </div>
+                <div class="form-group ">
+
+                    <input type="password"  id="cpassword" class="form-control" placeholder=" Confirm Password">
+
+                </div>
+                
+                <div class="form-group form-inline">
+                    <input type="checkbox" />
+                    <a>  Remmember password?</a>
+                </div>
+                <button type="submit" value="submit" class="btn btn-primary">Đăng kí</button>
+
+            </form>
+        </div>
+
+    </div>
+</body>
+<head>
+    <style>
+        body#LoginForm {
+            background-image: url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            padding: 20px;
+        }
+
+        .main-div {
+            background: #fff none repeat scroll 0 0;
+            border-radius: 2px;
+            margin: 10px auto 30px;
+            max-width: 40%;
+            padding: 50px 70px 70px 71px;
+            font-size: 12px;
+            border: 1px solid #00ff90;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 10px;
+        }
+
+        .login-form {
+            text-align: center;
+        }
+
+            .login-form .btn.btn-primary {
+                background: #7a6b16 none repeat scroll 0 0;
+                border-color: #f0ad4e;
+                color: #ffffff;
+                font-size: 14px;
+                width: 100%;
+                height: 50px;
+                line-height: 50px;
+                padding: 0;
+                margin: 5px;
+            }
+
+        .botto-text {
+            color: #ffffff;
+            font-size: 14px;
+            margin: auto;
+        }
+    </style>
+</head>
+</html>
+
+
+

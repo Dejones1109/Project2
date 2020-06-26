@@ -1,0 +1,39 @@
+﻿@model IEnumerable< QuanLySinhVien.Data.Mark>;
+@{
+    ViewData["Title"] = "Bảng điểm học phần";
+}
+
+<h2 class="text-center">Bảng điểm học phần</h2>
+<hr class="bg-success" />
+<br />
+<div class="container">
+    <table class="table table-hover table-bordered  ">
+        <thead class="bg-primary text-white ">
+            <tr>
+                <th>Học Kỳ </th>
+                <th>Mã HP</th>
+                <th>Tên Học Phần</th>
+                <th>TC</th>
+                <th>Điểm học phần</th>
+               
+
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.Semester.Name</th>
+                    <th>@item.Subjects.Code</th>
+                    <th>@item.Subjects.Name</th>
+                    <th>@item.Subjects.Credits</th>
+                    <th>@item.Semester.Name</th>
+                    
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

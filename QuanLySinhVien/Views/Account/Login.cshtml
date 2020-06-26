@@ -1,0 +1,101 @@
+﻿
+
+@model QuanLySinhVien.Data.Account;
+@{
+    ViewData["Title"] = "Login";
+}
+<html>
+
+<body id="LoginForm">
+    <div class="login-form ">
+        <div class="main-div">
+            <div class="panel">
+                <h4>Đăng Nhập Tài Khoản </h4>
+                <p>Nhập mã số sinh viên và password</p>
+            </div>
+
+            <form id="Login" method="post" asp-action="login">
+
+                <div class="form-group">
+
+                    <input type="text" class="form-control" id="UserName" name="UserName" placeholder="Enter MSSV">
+                </div>
+                <div class="form-group">
+
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                </div>
+                <div class="forgot">
+                    <a>Forgot password?</a>
+                </div>
+                <button type="submit" value="submit" class="btn btn-primary">Đăng nhập</button>
+
+              </form>
+          <!--  <button  class="btn btn-primary"  asp-area="" asp-controller="Home" asp-action="Register">Đăng kí</button> -->
+
+        </div>
+
+    </div>
+
+
+</body>
+<head>
+    <style>
+
+        body#LoginForm {
+            background-image: url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            padding: 20px;
+        }
+
+        .main-div {
+            background: #fff none repeat scroll 0 0;
+            border-radius: 2px;
+            margin: 10px auto 30px;
+            max-width: 40%;
+            padding: 50px 70px 70px 71px;
+            font-size: 12px;
+            border: 1px solid #00ff90;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 10px;
+        }
+
+        .login-form {
+            text-align: center;
+        }
+
+        .forgot a {
+            color: #777777;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        .login-form .btn.btn-primary {
+            background: #7a6b16 none repeat scroll 0 0;
+            border-color: #f0ad4e;
+            color: #ffffff;
+            font-size: 14px;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            padding: 0;
+            margin: 5px;
+        }
+
+        .forgot {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .botto-text {
+            color: #ffffff;
+            font-size: 14px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+</html>

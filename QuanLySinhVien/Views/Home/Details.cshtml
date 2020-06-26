@@ -1,0 +1,129 @@
+﻿@model QuanLySinhVien.Data.Student;
+@if (User.IsInRole("User"))
+{
+
+
+
+
+    <ul class="navbar-nav flex-grow-1 align-items-xl-end" style="margin-top:10%">
+        <li class="nav-item">
+            <a class="nav-link text-break" asp-area="" asp-controller="account" asp-action="logout"> <b>Đăng xuất</b><i class="fa fa-sign-out" aria-hidden="true"></i> </a>
+        </li>
+    </ul>
+
+    <h1 class="text-center text-danger">Chào mừng bạn đến với Trường Đại học Bách Khoa Hà Nội</h1>
+
+    <h2 class="text-center"> <i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp;THÔNG TIN SINH VIÊN </h2>
+    <hr class="bg-success" />
+
+
+
+    <div class="container">
+
+
+        <h4> Thông tin sinh viên</h4>
+        <hr class="bg-primary" />
+        <div class="row">
+            <div class="col-xl-3 align-content-center">
+                <a class="rounded"><img src="~/image/ảnh thẻ.jpg" style="width:160px;height:190px;" /></a>
+                <br />
+                <br />
+                <label class="text-center">MSSV:  @Model.StudentCode</label>
+            </div>
+            <div class="col-xl-4">
+                <label class="text-dark align-content-center"><b>Họ và Tên: </b> @Model.Name</label>
+
+                <br />
+                <label class="text-dark align-content-center"><b>Năm vào trường :</b> 2016</label>
+                <br /> 
+
+                <label class="text-dark align-content-center"> <b>Bậc Đào tạo :</b>Đại Học </label>
+                <br />
+                <label class="text-dark align-content-center"> <b>Khoa/Viện quản lý : </b> Viện Công nghệ Thông tin và truyền thông</label>
+                <br />
+                <label class="text-dark align-content-center"> <b>Tình trạng học tập : </b>đang học</label>
+                <br />
+
+
+            </div>
+            <div class="col-xl-5">
+                <label class="text-dark align-content-center"><b>Giới tính :</b>@Model.Sex</label>
+                <br />
+                <label class="text-dark align-content-center"><b>Lớp :</b> Ltu15</label>
+                <br />
+                <label class="text-dark align-content-center"> <b>Khóa học :</b>20192</label>
+                <br />
+                <label class="text-dark align-content-center"> <b>Chương trình : </b> Công nghệ  thông tin</label>
+                <br />
+                <label class="text-dark align-content-center"><b>Gmail :</b>@Model.Email</label>
+                <br />
+            </div>
+        </div>
+        <h4>Thông tin học tập</h4>
+        <hr class="bg-primary" />
+        <div class="row">
+            <div class="col-xl-6">
+                <label class="text-dark align-content-center"> <b>Tổng kết học kì :</b></label>
+                <br />
+                <label class="text-dark align-content-center"> <b>Trung bình tích lũy :</b> </label>
+                <br />
+                <label class="text-dark align-content-center"><b>Số TC nợ đăng kí :</b> </label>
+                <br />
+            </div>
+            <div class="col-xl-6">
+                <label class="text-dark align-content-center"><b>Số TC tích lũy :</b> </label>
+                <br />
+                <label class="text-dark align-content-center"> <b>Trình độ sinh viên :</b></label>
+                <br />
+                <label class="text-dark align-content-center"><b>Mức cảnh cáo :</b> </label>
+                <br />
+
+            </div>
+        </div>
+        <h4>Thông tin Cá Nhân</h4>
+        <hr class="bg-primary" />
+        <div class="row">
+            <div class="col-xl-6">
+                <label class="text-dark align-content-center"> <b>Dân tộc:</b>@Model.Nation</label>
+                <br />
+                <label class="text-dark align-content-center"> <b>Năm TN cấp 3 :</b>@Model.GraduationYear</label>
+                <br />
+                <label class="text-dark align-content-center"><b>Địa Chỉ :</b>@Model.Address</label>
+                <br />
+                <label class="text-dark align-content-center"> <b>Số CMTND :</b>@Model.CardID</label>
+                <br />
+                <label class="text-dark align-content-center"><b>Nơi cấp :</b>@Model.PlaceOfCardID</label>
+                <br />
+                <label class="text-dark align-content-center"> <b>Họ tên bố: </b> @Model.Parent.FatherName </label>
+                <br />
+                <label class="text-dark align-content-center"><b>Năm sinh :</b>@Model.Parent.FatherBirthYear</label>
+                <br />
+                <label class="text-dark align-content-center"><b> Nghề Nghiệp :</b>@Model.Parent.FatherJob</label>
+                <br />
+                <label class="text-dark align-content-center"><b>Điện thoại :</b>@Model.Parent.FatherPhone</label>
+                
+            </div>
+            <div class="col-xl-6">
+                <label class="text-dark align-content-center"><b>Tôn giáo :</b>@Model.Religion</label>
+                <br />
+                <label class="text-dark align-content-center"> <b>Trường THPT :</b>@Model.HighShoolPlace</label>
+              
+                <label class="text-dark align-content-center"><b>Số điện thoại :</b>@Model.Phone</label>
+                <br />
+                <label class="text-dark align-content-center"><b>Họ tên mẹ :</b> @Model.Parent.MotherName</label>
+                <br />
+                <label class="text-dark align-content-center"><b>Năm sinh :</b> @Model.Parent.MotherBirthYear</label>
+                <br />
+                <label class="text-dark align-content-center"><b>Nghề Nghiệp :</b> @Model.Parent.MotherJob</label>
+                <label class="text-dark align-content-center"><b>Điện thoại :</b> @Model.Parent.MotherPhone</label>
+                
+            </div>
+        </div>
+        <br />
+        <br />
+
+        <div class="row"><h5>Ghi chú :</h5><p class="bg-warning">Nếu sinh viên thấy thông tin chưa thấy xác minh,xin vui lòng liên hệ với Phòng Đào tạo</p></div>
+    </div>
+   
+
+}

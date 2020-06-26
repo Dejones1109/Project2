@@ -1,0 +1,90 @@
+﻿@model IEnumerable<QuanLySinhVien.Data.Mark>;
+@{
+    ViewData["Title"] = "Bảng điểm cá nhân";
+}
+<style>
+</style>
+<h2 class="text-center">Bảng điểm cá nhân</h2>
+<hr class="bg-success" />
+<br />
+
+<div class="container">
+    <h4 class="text-center bg-info text-white">Bảng điểm sinh viên</h4>
+    <hr class="bg-success" />
+    <br />
+
+    <table class="table table-hover table-bordered  ">
+        <thead class="bg-primary text-white ">
+            <tr>
+                <th>Học kỳ</th>
+                <th>Mã HP</th>
+                <th>Tên Học Phần</th>
+                <th>TC</th>
+                
+                <th>Điểm QT</th>
+                <th>Điểm thi</th>
+                <th>Điểm chữ</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <th>@item.Semester.Name</th>
+                    <th>@item.Semester.Code</th>
+                    <th>@item.Subjects.Name</th>
+                    <th>@item.Subjects.Credits</th>
+
+                    <th>@item.MarkMidTerm</th>
+                    <th>@item.MarkFinalExam</th>
+                    <th>@item.Semester.Name</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h4 class="text-center bg-info text-white">Kết quả bảng điểm sinh viên</h4>
+    <hr class="bg-success" />
+
+    <table class="table table-hover table-bordered  ">
+        <thead class="bg-primary text-white ">
+            <tr>
+                <th>Học kỳ</th>
+                <th>GPA</th>
+                <th>CPA</th>
+                <th>TC qua</th>
+                <th>TC Tích lũy</th>
+                <th>TC nợ ĐK</th>
+                <th>TC ĐK</th>
+                <th>Trình độ</th>
+                <th>Mức CC</th>
+                <th>Thiếu điểm</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+
+            <tr>
+                <th>hello</th>
+                <th>hello</th>
+                <th>hello</th>
+                <th>hello</th>
+                <th>hello</th>
+                <th>hello</th>
+                <th>hello</th>
+                <th>hello</th>
+                <th>hello</th>
+                <th>hello</th>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    function convertMark(e) {
+        return "mot";
+    }
+</script>

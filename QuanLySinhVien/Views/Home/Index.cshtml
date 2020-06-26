@@ -1,0 +1,41 @@
+﻿@model  IEnumerable<QuanLySinhVien.Data.Student>;
+@if (User.IsInRole("Admin"))
+{
+
+
+    <h2>Danh Sách Các Sinh Viên</h2>
+    <ul class="navbar-nav flex-grow-1 align-items-xl-end" style="margin-top:10%">
+        <li class="nav-item">
+            <a class="nav-link text-break" asp-area="" asp-controller="account" asp-action="logout"> <b>Đăng xuất</b><i class="fa fa-sign-out" aria-hidden="true"></i> </a>
+        </li>
+    </ul>
+    <dir class="container">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+
+                    <th>MSSV</th>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr class='clickable-row' data-href="@Url.Action("BangDiemCaNhan", "Home", new { studentID = item.ID })">
+                    
+                        <th>@item.StudentCode</th>
+                        <th>@item.Name</th>
+                        <th>@item.Email</th>
+                    </tr>
+
+                }
+            </tbody>
+
+        </table>
+
+    </dir>
+
+}
