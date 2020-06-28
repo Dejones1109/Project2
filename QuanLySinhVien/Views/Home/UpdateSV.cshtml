@@ -1,4 +1,4 @@
-﻿
+﻿@model  QuanLySinhVien.Data.Student;
 @{
     ViewData["Title"] = "Cập nhật thông tin sinh viên";
 }
@@ -21,7 +21,7 @@
             </div>
             <div class="col-xl-10">
                 
-                <input type="text" id="ho_va_ten" name="ho_va_ten" class="form-control" />
+                <input  type="datetime" id="ho_va_ten"   asp-for="Name" class="form-control" />
             </div>
         </div>
         <br />
@@ -30,8 +30,8 @@
                 <label class="text-dark align-content-center"> Giới tính :</label>
             </div>
             <div class="col-xl-10 form-inline">
-                <div class="col-md-5"><input type="radio" id="gioi_tinh"  name="gioi_tinh" value="Nam" /> Nam</div>
-                <div class="col-md-5"><input type="radio" id="gioi_tinh"  name="gioi_tinh" value="Nữ" /> Nữ</div>
+                <div class="col-md-5"><input type="radio" id="gioi_tinh" asp-for="Sex"  name="gioi_tinh" value="1" /> Nam</div>
+                <div class="col-md-5"><input type="radio" id="gioi_tinh" asp-for="Sex"  name="gioi_tinh" value="0" /> Nữ</div>
             </div>
         </div>
         <br />
@@ -40,8 +40,8 @@
                 <label class="text-dark align-content-center">Dân Tộc :</label>
             </div>
             <div class="col-xl-10">
-                <input type="text" id="dan_toc" name="dan_toc" class="form-control" />
-                <label class="text-break">vd: Kinh</label>
+                <input type="text" id="dan_toc" name="dan_toc" asp-for="Nation" class="form-control" />
+                <label class="text-break text-danger">vd: Kinh</label>
             </div>
         </div>
 
@@ -50,7 +50,7 @@
                 <label class="text-dark align-content-center">Tôn giáo :</label>
             </div>
             <div class="col-xl-10">
-                <input type="text" id="ton_giao" name="ton_giao" class="form-control" />
+                <input type="text" id="ton_giao" name="ton_giao" asp-for="Religion" class="form-control" />
 
             </div>
         </div>
@@ -60,28 +60,20 @@
                 <label class="text-dark align-content-center">Quốc tịch :</label>
             </div>
             <div class="col-xl-10">
-                <input type="text" id="quoc_tich" name="quoc_tich" class="form-control" />
-                <label class="text-break">vd: Việt Nam</label>
+                <input type="text" id="quoc_tich" name="quoc_tich" asp-for="Nationality" class="form-control" />
+                <label class="text-break text-danger">vd: Việt Nam</label>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Nơi sinh :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" id="noi_sinh" name="noi_sinh" class="form-control" />
-                <label class="text-break">vd: Giao Long -Giao Thủy-Nam Định </label>
-            </div>
-        </div>
+      
 
         <div class="row">
             <div class="col-xl-2 ">
                 <label class="text-dark align-content-center">Năm Cấp 3 TN :</label>
             </div>
             <div class="col-xl-10">
-                <input type="text" class="form-control"  id="nam_cap3_tn" name="nam_cap3_tn"/>
-                <label class="text-break">vd: 2020 </label>
+                <input type="text" class="form-control"  id="nam_cap3_tn" asp-for="GraduationYear" name="nam_cap3_tn"/>
+                <label class="text-break text-danger">vd: 2020 </label>
             </div>
         </div>
         <div class="row">
@@ -89,8 +81,8 @@
                 <label class="text-dark align-content-center">Trường cấp 3 :</label>
             </div>
             <div class="col-xl-10">
-                <input type="text" class="form-control" id="truong_thpt" name="truong_thpt" />
-                <label class="text-break">vd: Trường THPT Chu Văn An</label>
+                <input type="text" class="form-control" id="truong_thpt" asp-for="HighShoolPlace" name="truong_thpt" />
+                <label class="text-break text-danger">vd: Trường THPT Chu Văn An</label>
             </div>
         </div>
         <div class="row">
@@ -98,8 +90,8 @@
                 <label class="text-dark align-content-center">Đối tượng :</label>
             </div>
             <div class="col-xl-10">
-                <input type="text" class="form-control" id="doi_tuong" name="doi_tuong"/>
-                <label class="text-break">vd: hộ nghèo,con thương bệnh binh,biên giới,hải đảo,...</label>
+                <input type="text" class="form-control" id="doi_tuong" asp-for="PolicyChild" name="doi_tuong"/>
+                <label class="text-break text-danger">vd: hộ nghèo,con thương bệnh binh,biên giới,hải đảo,...</label>
             </div>
         </div>
         <div class="row">
@@ -107,7 +99,7 @@
                 <label class="text-dark align-content-center">Số CMND/Hộ chiếu :</label>
             </div>
             <div class="col-xl-10">
-                <input type="text" class="form-control"id="cmnd" name="cmnd" />
+                <input type="text" class="form-control"id="cmnd" asp-for="CardID" name="cmnd" />
 
             </div>
         </div>
@@ -117,203 +109,166 @@
                 <label class="text-dark align-content-center">Ngày cấp :</label>
             </div>
             <div class="col-xl-10 input-group">
-                <input type="datetime" class="form-control" id="ngay_cap_cmnd" name="ngay_cap_cmnd"/>
+                <input type="datetime" class="form-control" id="ngay_cap_cmnd" asp-for="DateOfCardID" name="ngay_cap_cmnd"/>
                 <div class="input-group-append">
                     <button class="btn btn-info">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                     </button>
                 </div>
-
-
             </div>
             <i class="fas fa-calendar-alt"></i>
         </div>
         <br />
 
 
-        <h4 class="text-xl-left"> Địa chị Hiện tại</h4>
-        <hr class="bg-primary" />
-
         <div class="row">
             <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Thành Phố/Tỉnh :</label>
+                <label class="text-dark align-content-center">Địa chỉ thường trú :</label>
             </div>
             <div class="col-xl-10">
-                <input type="text" class="form-control" id="tinh" name="tinh" />
-            </div>
-        </div>
-        <hr class="bg-primary" />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Quận/Huyện :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="huyen"  name="huyen"/>
+                <input type="text" class="form-control" id="cmnd" asp-for="Address" name="cmnd" />
 
             </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Phường/xã :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="xa" name="xa"/>
+          </div>
 
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Số nhà/Thôn :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="so_nha" name="so_nha"/>
+            <h4 class="text-xl-left text-body">Thông Tin về Bố</h4>
+            <hr class="bg-primary" />
 
-            </div>
-        </div>
+            <div class="row">
+                <div class="col-xl-2 ">
+                    <label class="text-dark align-content-center">Họ và tên :</label>
+                </div>
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="ho_va_ten_bo" asp-for="Parent.FatherName" name="ho_va_ten_bo" />
 
-
-
-
-        <h4 class="text-xl-left text-body">Thông Tin về Bố</h4>
-        <hr class="bg-primary" />
-
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Họ và tên :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control"  id="ho_va_ten_bo" name="ho_va_ten_bo"/>
-
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Năm sinh :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="nam_sinh_bo" name="nam_sinh_bo"/>
-
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Nghề nghiệp :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="nghe_nghep_bo" name="nghe_nghiep_bo"/>
-
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Số điện thoại :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="sdt_bo" name="sdt_bo"/>
-
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Địa chỉ hiện tại :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="dia_chi_bo" name="dia_chi_bo" />
-
-            </div>
-        </div>
-
-        <h4 class="text-xl-left text-body"> Thông tin về mẹ</h4>
-        <hr class="bg-primary" />
-
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Họ và tên :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="ho_va_ten_me" name="ho_va_ten_me"/>
-
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Năm sinh :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="nam_sinh_me" name="nam_sinh_me"/>
-
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Nghề nghiệp :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="nghe_nghiep_me" name="nghe_nghiep_me"/>
-
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Số điện thoại :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="sdt_me" name="sdt_me"/>
-
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-xl-2 ">
-                <label class="text-dark align-content-center">Địa chỉ hiện tại :</label>
-            </div>
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="dia_chi_me" name="dia_chi_me"/>
-
-            </div>
-        </div>
-
-        <h4 class="text-xl-left text-body"> Địa chỉ liên lạc nếu cần thiết</h4>
-        <hr class="bg-primary" />
-
-        <div class="row">
-            <div class="col-xl-2 ">
-
+                </div>
             </div>
             <br />
-            <div class="col-xl-10">
-                <input type="text" class="form-control" id="dia_chi_can_thiet" name="dia_chi_can_thiet"/>
+            <div class="row">
+                <div class="col-xl-2 ">
+                    <label class="text-dark align-content-center">Năm sinh :</label>
+                </div>
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="nam_sinh_bo" asp-for="Parent.FatherBirthYear" name="nam_sinh_bo" />
 
+                </div>
             </div>
-        </div>
+            <br />
+            <div class="row">
+                <div class="col-xl-2 ">
+                    <label class="text-dark align-content-center">Nghề nghiệp :</label>
+                </div>
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="nghe_nghep_bo" asp-for="Parent.FatherJob" name="nghe_nghiep_bo" />
 
-        <h4 class="text-xl-left text-body"> Xác nhận</h4>
-        <hr class="bg-primary" />
-
-        <div class="row">
-            <div class="col-xl-1 ">
-
+                </div>
             </div>
-            <div class="col-xl-11">
-                <input type="checkbox" />
-                <label>Tôi xin cam đoan về các thông tin trên là chính xác</label>
+            <br />
+            <div class="row">
+                <div class="col-xl-2 ">
+                    <label class="text-dark align-content-center">Số điện thoại :</label>
+                </div>
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="sdt_bo" name="sdt_bo" asp-for="Parent.FatherPhone"/>
+
+                </div>
             </div>
-        </div>
-        <br />
-        <br />
-        <div class="row">
-            <button type="submit" value="submit">Cập Nhật</button>
-        </div>
-    </form>
+            <br />
+            <div class="row">
+                <div class="col-xl-2 ">
+                    <label class="text-dark align-content-center">Địa chỉ hiện tại :</label>
+                </div>
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="dia_chi_bo" asp-for="Parent.FatherAddress" name="dia_chi_bo" />
+
+                </div>
+            </div>
+
+            <h4 class="text-xl-left text-body"> Thông tin về mẹ</h4>
+            <hr class="bg-primary" />
+
+            <div class="row">
+                <div class="col-xl-2 ">
+                    <label class="text-dark align-content-center">Họ và tên :</label>
+                </div>
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="ho_va_ten_me" asp-for="Parent.MotherName" name="ho_va_ten_me" />
+
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xl-2 ">
+                    <label class="text-dark align-content-center">Năm sinh :</label>
+                </div>
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="nam_sinh_me" asp-for="Parent.MotherBirthYear"  name="nam_sinh_me" />
+
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xl-2 ">
+                    <label class="text-dark align-content-center">Nghề nghiệp :</label>
+                </div>
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="nghe_nghiep_me" asp-for="Parent.MotherJob"  name="nghe_nghiep_me" />
+
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xl-2 ">
+                    <label class="text-dark align-content-center">Số điện thoại :</label>
+                </div>
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="sdt_me" name="sdt_me" asp-for="Parent.MotherPhone"  />
+
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xl-2 ">
+                    <label class="text-dark align-content-center">Địa chỉ hiện tại :</label>
+                </div>
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="dia_chi_me" name="dia_chi_me" asp-for="Parent.MotherAddress" />
+
+                </div>
+            </div>
+
+            <h4 class="text-xl-left text-body"> Địa chỉ liên lạc nếu cần thiết</h4>
+            <hr class="bg-primary" />
+
+            <div class="row">
+                <div class="col-xl-2 ">
+
+                </div>
+                <br />
+                <div class="col-xl-10">
+                    <input type="text" class="form-control" id="dia_chi_can_thiet"  asp-for="Contact" name="dia_chi_can_thiet" />
+
+                </div>
+            </div>
+
+            <h4 class="text-xl-left text-body"> Xác nhận</h4>
+            <hr class="bg-primary" />
+
+            <div class="row">
+                <div class="col-xl-1 ">
+
+                </div>
+                <div class="col-xl-11">
+                    <input type="checkbox" />
+                    <label>Tôi xin cam đoan về các thông tin trên là chính xác</label>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <button type="submit" value="submit">Cập Nhật</button>
+            </div>
+</form>
 
 
 </dir>

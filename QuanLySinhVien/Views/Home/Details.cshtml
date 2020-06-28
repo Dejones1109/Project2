@@ -1,10 +1,6 @@
 ﻿@model QuanLySinhVien.Data.Student;
 @if (User.IsInRole("User"))
 {
-
-
-
-
     <ul class="navbar-nav flex-grow-1 align-items-xl-end" style="margin-top:10%">
         <li class="nav-item">
             <a class="nav-link text-break" asp-area="" asp-controller="account" asp-action="logout"> <b>Đăng xuất</b><i class="fa fa-sign-out" aria-hidden="true"></i> </a>
@@ -35,7 +31,7 @@
 
                 <br />
                 <label class="text-dark align-content-center"><b>Năm vào trường :</b> 2016</label>
-                <br /> 
+                <br />
 
                 <label class="text-dark align-content-center"> <b>Bậc Đào tạo :</b>Đại Học </label>
                 <br />
@@ -101,13 +97,13 @@
                 <label class="text-dark align-content-center"><b> Nghề Nghiệp :</b>@Model.Parent.FatherJob</label>
                 <br />
                 <label class="text-dark align-content-center"><b>Điện thoại :</b>@Model.Parent.FatherPhone</label>
-                
+
             </div>
             <div class="col-xl-6">
                 <label class="text-dark align-content-center"><b>Tôn giáo :</b>@Model.Religion</label>
                 <br />
                 <label class="text-dark align-content-center"> <b>Trường THPT :</b>@Model.HighShoolPlace</label>
-              
+                <br />
                 <label class="text-dark align-content-center"><b>Số điện thoại :</b>@Model.Phone</label>
                 <br />
                 <label class="text-dark align-content-center"><b>Họ tên mẹ :</b> @Model.Parent.MotherName</label>
@@ -116,7 +112,7 @@
                 <br />
                 <label class="text-dark align-content-center"><b>Nghề Nghiệp :</b> @Model.Parent.MotherJob</label>
                 <label class="text-dark align-content-center"><b>Điện thoại :</b> @Model.Parent.MotherPhone</label>
-                
+
             </div>
         </div>
         <br />
@@ -124,6 +120,7 @@
 
         <div class="row"><h5>Ghi chú :</h5><p class="bg-warning">Nếu sinh viên thấy thông tin chưa thấy xác minh,xin vui lòng liên hệ với Phòng Đào tạo</p></div>
     </div>
-   
+
 
 }
+

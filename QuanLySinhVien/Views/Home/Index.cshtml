@@ -29,8 +29,13 @@
                         <th>@item.StudentCode</th>
                         <th>@item.Name</th>
                         <th>@item.Email</th>
+                        <th>
+                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                            <a asp-action="Info" asp-route-id="@item.ID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                        </th>
                     </tr>
-
+                 
                 }
             </tbody>
 

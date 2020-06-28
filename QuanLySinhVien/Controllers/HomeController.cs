@@ -39,7 +39,7 @@ namespace CookieDemo.Controllers
         {
             if (User.IsInRole("Admin"))
             {
-              //  đưa ra list danh sách sinh  viên
+              
                 return View(_studentHelper.GetStudents());
             }
             else
@@ -59,7 +59,7 @@ namespace CookieDemo.Controllers
         //    }
         //    return View(_studentHelper.GetStudent(UserName));
         //}
-
+        [HttpGet]
         public IActionResult Details()
         {
             string UserName = User.Identity.Name;
@@ -70,9 +70,23 @@ namespace CookieDemo.Controllers
 
             return View(_studentHelper.GetStudent(UserName));
         }
+       [HttpGet]
+        public async Task<IActionResult> Info(int ID)
+        {
+           // string UserName = User.Identity.Name;
+           
+            var student = await _context.Students.Include(m=>m.Parent).FirstOrDefaultAsync(m => m.ID == ID);
+          
 
-
-        [Authorize(Roles = "Admin,User")]
+            return View(student);
+        }
+        public async Task<IActionResult> EditAsync(int ID)
+        {
+            var student = await _context.Students.Include(m => m.Parent).SingleOrDefaultAsync(m => m.ID == ID);
+            return View(student);
+        }
+       
+        [Authorize(Roles = "Admin")]
         public IActionResult BangDiemCaNhan(int studentID)
         {
             if (studentID == 0)
@@ -94,94 +108,64 @@ namespace CookieDemo.Controllers
             }
             return View(_markHelper.GetMarks(studentID));
         }
-        [Authorize(Roles = "User")]
-       public IActionResult UpdateSV()
+        [HttpGet]
+        public float AverageMark(int MarkMidTerm, int MarkFinalExam, int RateMidTerm, int RateFinalExam)
         {
-            return View();
+      
+          return  ((MarkMidTerm * RateMidTerm + MarkFinalExam * RateFinalExam) / 10);
+        }
+     
+        [Authorize(Roles = "User")]
+      
+        public IActionResult UpdateSV()
+        {           
+            return View(_studentHelper.GetStudent(User.Identity.Name));
         }
         [Authorize(Roles = "User")]
         [HttpPost]
-        public IActionResult UpdateSV(Student students,Parent parent)
+        public  async Task<IActionResult> UpdateSV(Student student) 
         {
             if (ModelState.IsValid)
             {
-               // MSSV = User.Identity.Name;
-               // Console.WriteLine(MSSV);
-               // var data = _context.Set<Student>().FromSql("INSERT INTO dbo.Students(mssv,ho_va_ten,gioi_tinh,dan_toc,ton_giao,dien_thoai,cmnd,ngay_cap_cmnd,noi_cap_cmnd,nam_cap3_tn,truong_thpt,noi_sinh,dia_chi,doi_tuong,dia_chi_can_thiet,ngay_tao,ngay_cap_nhat)" +
-               //     "value(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)").First();
-               //// var data2 =_context.Set<Students>()
-               // Console.WriteLine(data);
-               // var data1 = _context.Set<Parent>().FromSql("INSERT INTO dbo.parent(ho_va_ten_bo,nam_sinh_bo,sdt_bo,nghe_nghiep_bo,dia_chi_bo,ho_va_ten_me,nam_sinh_me,sdt_me,nghe_nghiep_me,dia_chi_me,ngay_tao,ngay_cap_nhap)value(?,?,?,?,?,?,?,?,?,?,?)").FirstOrDefault();
-               // //    var data2 = _context.Set<parent_student>().FromSql("INSERT INTO parent_students(mssv,)");
-               // Console.WriteLine(data1);
-               // Console.WriteLine(students.ho_va_ten);
-               // //Dữ liệu bảng student
-               // data.mssv = MSSV;
-               // data.ho_va_ten = students.ho_va_ten;
-               // data.gioi_tinh = students.gioi_tinh;
-               // data.dan_toc = students.dan_toc;
-               // data.quoc_tich = students.quoc_tich;
-               // data.nam_cap3_tn = Convert.ToInt32(students.nam_cap3_tn);
-               // data.noi_sinh = students.noi_sinh;
-               // data.truong_thpt = students.truong_thpt;
-               // data.doi_tuong = students.doi_tuong;
-               // data.cmnd = students.cmnd;
-               // data.ngay_cap_cmnd = Convert.ToDateTime(students.ngay_cap_cmnd);
-                
-               // data.dia_chi_can_thiet = students.dia_chi_can_thiet;
-               // //   
-
-               // //   dữ liệu bảng parent
-                
-               // data1.ho_va_ten_bo = parent.ho_va_ten_bo;
-               // data1.nam_sinh_bo = Convert.ToInt32(parent.nam_sinh_bo);
-               // data1.nghe_nghiep_bo = parent.nghe_nghiep_bo;
-               // data1.sdt_bo = parent.sdt_bo;
-               // data1.dia_chi_bo = parent.dia_chi_bo;
-               // data1.ho_va_ten_me = parent.ho_va_ten_me;
-               // data1.nam_sinh_me = Convert.ToInt32(parent.nam_sinh_me);
-               // data1.nghe_nghiep_me = parent.nghe_nghiep_me;
-               // data1.sdt_me = parent.sdt_me;
-               // data1.dia_chi_me = parent.dia_chi_me;
-               // //thêm vào 2  bảng 
-               // _context.Add(students);
-               // _context.Add(parent);
-               // //save vào  bảng 
-               // _context.SaveChanges();
-               
-
-               // return RedirectToAction("Index", "Home");
-            }
-            return View();
-       
-        }
-      /*  public IActionResult Register()
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public  async Task<IActionResult> Register([Bind("mssv,email,password,cpassword")] Accounts accounts)
-        {
-            if (ModelState.IsValid)
-            {
-                DateTime now = DateTime.Now;
-                String.Format("{0:d/M/yyyy}", now);
-                if (accounts.password == accounts.cpassword)
+                try
                 {
-                    accounts.ngay_dang_ki = Convert.ToDateTime(now);
-                    _context.Add(accounts);
-                    _context.SaveChanges();
-                    return RedirectToAction("Login", "Account");
+                    _context.Update(student);
+                    await _context.SaveChangesAsync();
                 }
-                else
-                {
-                    return RedirectToAction("Register", "Home");
+                catch (Exception e){
+                    Console.WriteLine(e.Message);
                 }
+                return RedirectToAction(nameof(Index));
             }
-            return View();
+            return View(student);
         }
-        */
+        /*  public IActionResult Register()
+          {
+              return View();
+          }
+          [HttpPost]
+          [ValidateAntiForgeryToken]
+          public  async Task<IActionResult> Register([Bind("mssv,email,password,cpassword")] Accounts accounts)
+          {
+              if (ModelState.IsValid)
+              {
+                  DateTime now = DateTime.Now;
+                  String.Format("{0:d/M/yyyy}", now);
+                  if (accounts.password == accounts.cpassword)
+                  {
+                      accounts.ngay_dang_ki = Convert.ToDateTime(now);
+                      _context.Add(accounts);
+                      _context.SaveChanges();
+                      return RedirectToAction("Login", "Account");
+                  }
+                  else
+                  {
+                      return RedirectToAction("Register", "Home");
+                  }
+              }
+              return View();
+          }
+          */
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

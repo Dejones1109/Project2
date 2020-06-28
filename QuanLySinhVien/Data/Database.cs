@@ -68,7 +68,7 @@ namespace QuanLySinhVien.Data
         public int RateMidTerm { get; set; }
 
         public int RateFinalExam { get; set; }
-
+        
         public Subjects()
         {
             Marks = new HashSet<Mark>();
@@ -95,6 +95,7 @@ namespace QuanLySinhVien.Data
         public int MarkMidTerm { get; set; }
 
         public int MarkFinalExam { get; set; }
+        
 
 
         public virtual Semester Semester { get; set; }
@@ -106,6 +107,7 @@ namespace QuanLySinhVien.Data
   
     public class Parent
     {
+        [BindProperty]
         [Key]
         public int ParentID { get; set; }
 
@@ -172,7 +174,9 @@ namespace QuanLySinhVien.Data
     }
 
     public class Student
+
     {
+        [BindProperty]
         [Key]
         public int ID { get; set; }
 

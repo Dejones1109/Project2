@@ -19,7 +19,7 @@ namespace QuanLySinhVien.Helper
             studentHelper = _studentHelper;
         }
 
-        public List<Mark> GetMarks(int studentID)//tham chiếu, có thay đổi ra ngoài
+        public List<Mark> GetMarks(int studentID)
         {
             //var student = studentHelper.GetStudentID(StudentID);
             if (db.Students.Any(x => x.ID == studentID))
@@ -28,6 +28,12 @@ namespace QuanLySinhVien.Helper
                 //return db.Students.Include(e => e.Marks).Single(x => x.ID == studentID).Marks.ToList();
             }
             return null;
+        }
+        public Mark GetAverageMark(int studentID)
+        {
+
+            return null;
+              
         }
     }
 }

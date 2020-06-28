@@ -23,12 +23,12 @@
                 
                 <th>Điểm QT</th>
                 <th>Điểm thi</th>
-                <th>Điểm chữ</th>
+                <th>Điểm Trung Bình</th>
             </tr>
 
         </thead>
         <tbody>
-            @foreach(var item in Model)
+            @foreach (var item in Model)
             {
                 <tr>
                     <th>@item.Semester.Name</th>
@@ -38,7 +38,9 @@
 
                     <th>@item.MarkMidTerm</th>
                     <th>@item.MarkFinalExam</th>
-                    <th>@item.Semester.Name</th>
+                    <th>
+                        <a id="result"></a>
+                    </th>
                 </tr>
             }
         </tbody>
@@ -83,8 +85,27 @@
 </div>
 
 
-<script>
-    function convertMark(e) {
-        return "mot";
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $('#linky').click(function AverageMark(MarkMidTerm, MarkFinalExam, RateMidTerm, RateFinalExam)
+    {
+        $.ajax({
+            type: "Get",
+            url: "@Url.Action("AverageMark")",
+            data: { MarkMidTerm: MarkMidTerm, MarkFinalExam: MarkFinalExam, RateMidTerm: RateMidTerm, RateFinalExam: RateFinalExam},
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            
+            success: function (msg) {
+               
+                $("#result").show(msg);
+            
+               
+            },
+            error: function (req, status, error) {
+                alert(error);
+            }
+        });
     }
+    );
 </script>
