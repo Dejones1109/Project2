@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuanLySinhVien.Data;
 
 namespace QuanLySinhVien.Migrations
 {
     [DbContext(typeof(QLSVContext))]
-    partial class QLSVContextModelSnapshot : ModelSnapshot
+    [Migration("20200630101220_Edit4")]
+    partial class Edit4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,8 +260,8 @@ namespace QuanLySinhVien.Migrations
                     b.Property<string>("Religion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Sex")
-                        .HasColumnType("int");
+                    b.Property<byte>("Sex")
+                        .HasColumnType("tinyint");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");

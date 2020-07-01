@@ -13,7 +13,8 @@ using System.Linq;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
 using QuanLySinhVien.Helper;
-
+using System.Collections.Immutable;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace CookieDemo.Controllers
 {
@@ -23,12 +24,14 @@ namespace CookieDemo.Controllers
         public readonly QLSVContext _context;
         public readonly IStudentHelper _studentHelper;
         public readonly IMarkHelper _markHelper;
+       
      
         public HomeController(QLSVContext context, IStudentHelper studentHelper,IMarkHelper markHelper)
         {
             _context = context;
             _studentHelper = studentHelper;
             _markHelper = markHelper;
+         
         }
       
         
@@ -86,34 +89,92 @@ namespace CookieDemo.Controllers
             return View(student);
         }
        
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "User")]
         public IActionResult BangDiemCaNhan(int studentID)
         {
+            List<BangDiemCaNhanViewModel> marks = new List<BangDiemCaNhanViewModel>();
             if (studentID == 0)
             {
                 studentID = _studentHelper.GetStudent(User.Identity.Name).ID;
-            }    
-            return View(_markHelper.GetMarks(studentID));
+                var data = _markHelper.GetMarks(studentID);
+               
+                foreach (Mark i in data)
+                {
+                    BangDiemCaNhanViewModel viewModel = new BangDiemCaNhanViewModel();
+                    viewModel.Mark = i;
+                    double average = (double)(i.MarkMidTerm * (i.Subjects.RateMidTerm / 10f) + i.MarkFinalExam * (i.Subjects.RateFinalExam / 10f));
+                    viewModel.MarkAverage = Math.Round(average,2);
+                    if (viewModel.MarkAverage >= 8.5)
+                    {
+                        viewModel.markWork = MarkWork.A;
+                   
+                    }else if(viewModel.MarkAverage >= 7.5&& viewModel.MarkAverage < 8.5)
+                    {
+                        viewModel.markWork = MarkWork.B;
+                       
+                    }
+                    else if (viewModel.MarkAverage >= 6.5 && viewModel.MarkAverage < 7.5)
+                    {
+                        viewModel.markWork = MarkWork.C;
+                     
+                    }
+                    else if (viewModel.MarkAverage >= 5.5 && viewModel.MarkAverage < 6.5)
+                    {
+                        viewModel.markWork = MarkWork.D;
+                       
+                    }
+                    else if (viewModel.MarkAverage >= 4.0 && viewModel.MarkAverage < 5.5)
+                    {
+                        viewModel.markWork = MarkWork.E;
+                    
+                    }
+                    else
+                    {
+                        viewModel.markWork = MarkWork.F;
+                     
+                    }
+                    marks.Add(viewModel);
+                  
+                }
+             
+            }
+            return View(marks.ToList());
         }
-     
+               
 
         [Authorize(Roles = "User")]
-        public IActionResult BangDiemHocPhan(int studentID)
+        public IActionResult BangDiemTongKet(int studentID)
         {
-
-
+            BangDiemTongKetViewModel viewModel = new BangDiemTongKetViewModel();
+          
+            
             if (studentID == 0)
             {
+             
                 studentID = _studentHelper.GetStudent(User.Identity.Name).ID;
+                var data = _markHelper.GetMarks(studentID);
+                double sum = 0;
+                int count = 0;
+                foreach (Mark i in data)
+                {
+                    BangDiemCaNhanViewModel viewModels = new BangDiemCaNhanViewModel();
+                    viewModels.Mark = i;
+                   
+                    sum += (i.MarkMidTerm * (i.Subjects.RateMidTerm / 10f) + i.MarkFinalExam * (i.Subjects.RateFinalExam / 10f))*i.Subjects.Credits;
+                    count += i.Subjects.Credits;
+                    viewModel.Semester = 0;
+                    
+
+                }
+                viewModel.GPA = Math.Round(sum / count, 2);
+                viewModel.PassedCredits = count;
+                
+
+
             }
-            return View(_markHelper.GetMarks(studentID));
+            return View(viewModel);
         }
-        [HttpGet]
-        public float AverageMark(int MarkMidTerm, int MarkFinalExam, int RateMidTerm, int RateFinalExam)
-        {
-      
-          return  ((MarkMidTerm * RateMidTerm + MarkFinalExam * RateFinalExam) / 10);
-        }
+       
      
         [Authorize(Roles = "User")]
       
@@ -127,17 +188,16 @@ namespace CookieDemo.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
+              
+                    student.DateOfCardID = DateTime.Now;
                     _context.Update(student);
-                    await _context.SaveChangesAsync();
-                }
-                catch (Exception e){
-                    Console.WriteLine(e.Message);
-                }
-                return RedirectToAction(nameof(Index));
+            //        Console.WriteLine(student);
+                  await _context.SaveChangesAsync();
+            
             }
-            return View(student);
+            return RedirectToAction(nameof(Index));
+          
+           
         }
         /*  public IActionResult Register()
           {

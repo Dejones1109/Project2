@@ -29,12 +29,7 @@ namespace QuanLySinhVien.Helper
             }
             return null;
         }
-        public Mark GetAverageMark(int studentID)
-        {
-
-            return null;
-              
-        }
+       
     }
 }
 

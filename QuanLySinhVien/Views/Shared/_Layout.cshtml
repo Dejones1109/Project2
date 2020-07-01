@@ -25,21 +25,24 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">  <i class="fa fa-bars" aria-hidden="true"></i> <b>Trang chủ</b> </a>
                         </li>
-                     
+
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" data-toggle="dropdown">
                                 <i class="fa fa-archive" aria-hidden="true"></i> <b>Quản lý học tập</b>
                             </a>
+                            <a class="dropdown-item text-white bg-info" href="@Url.Action("BangDiemCaNhan", "Home", new { studentID = 0 })"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Bảng điểm cá nhân</a>
+                            <a class="dropdown-item text-white  bg-info" href="@Url.Action("BangDiemTongKet", "Home", new { studentID = 0 })"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Bảng điểm học phần</a>
+
                             <div class="dropdown-menu bg-info" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item text-white bg-info" href="@Url.Action("BangDiemCaNhan", "Home", new { studentID = 0 })"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Bảng điểm cá nhân</a>
-                                <a class="dropdown-item text-white  bg-info" href="@Url.Action("BangDiemHocPhan", "Home", new { studentID = 0 })"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Bảng điểm học phần</a>
+                                <a class="dropdown-item text-white  bg-info" href="@Url.Action("BangDiemTongKet", "Home", new { studentID = 0 })"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Bảng điểm học phần</a>
                             </div>
 
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="UpdateSV"> <i class="fa fa-pencil-square" aria-hidden="true"></i>  <b>Cập nhập thông tin</b> </a>
                         </li>
-                        
+
                     </ul>
 
 

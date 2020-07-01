@@ -36,5 +36,6 @@ namespace QuanLySinhVien.Helper
         {
             return db.Students.SingleOrDefault(s => s.ID == StudentID);
         }
+        
     }
 }

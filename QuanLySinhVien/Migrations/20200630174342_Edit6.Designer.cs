@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuanLySinhVien.Data;
 
 namespace QuanLySinhVien.Migrations
 {
     [DbContext(typeof(QLSVContext))]
-    partial class QLSVContextModelSnapshot : ModelSnapshot
+    [Migration("20200630174342_Edit6")]
+    partial class Edit6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,6 +56,9 @@ namespace QuanLySinhVien.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<float>("MarkAverage")
+                        .HasColumnType("real");
 
                     b.Property<int>("MarkFinalExam")
                         .HasColumnType("int");

@@ -1,0 +1,35 @@
+﻿@model  QuanLySinhVien.Models.BangDiemTongKetViewModel;
+@{
+    ViewData["Title"] = "Bảng điểm tổng kết";
+}
+
+<h2 class="text-center">Bảng điểm tổng kết</h2>
+<hr class="bg-success" />
+<br />
+<div class="container">
+    <table class="table table-hover table-bordered  ">
+        <thead class="bg-primary text-white ">
+            <tr>
+                <th>Học Kỳ </th>
+                <th>GPA</th>
+                <th>TC tích lũy</th>
+                <th>TC nợ</th>
+              
+               
+
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr>
+                <th>@Model.GPA</th>
+                <th>@Model.GPA</th>
+                <th>@Model.PassedCredits</th>
+                <th>@Model.GPA</th>
+            </tr>
+            
+
+        </tbody>
+    </table>
+</div>
+

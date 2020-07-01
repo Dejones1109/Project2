@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 
 namespace QuanLySinhVien.Data
 {
-
+    [BindProperties]
     public class Account
     {
         [Key]
@@ -32,8 +32,8 @@ namespace QuanLySinhVien.Data
 
         public virtual ICollection<Student> Students { get; set; }
     }
-
-    public class Semester
+    [BindProperties]
+    public  class Semester
     {
         [Key]
         public int ID { get; set; }
@@ -53,7 +53,7 @@ namespace QuanLySinhVien.Data
 
         public virtual ICollection<Mark> Marks { get; set; }
     }
-   
+    [BindProperties]
     public class Subjects
     {
         [Key]
@@ -76,7 +76,7 @@ namespace QuanLySinhVien.Data
 
         public virtual ICollection<Mark> Marks { get; set; }
     }
-   
+    [BindProperties]
     public class Mark
     {
         [Key]
@@ -95,7 +95,9 @@ namespace QuanLySinhVien.Data
         public int MarkMidTerm { get; set; }
 
         public int MarkFinalExam { get; set; }
+
         
+
 
 
         public virtual Semester Semester { get; set; }
@@ -103,11 +105,12 @@ namespace QuanLySinhVien.Data
         public virtual Subjects Subjects { get; set; }
 
         public virtual Student Student { get; set; }
+     
     }
-  
+    [BindProperties]
     public class Parent
     {
-        [BindProperty]
+      
         [Key]
         public int ParentID { get; set; }
 
@@ -140,7 +143,7 @@ namespace QuanLySinhVien.Data
 
         public virtual ICollection<Student> Students { get; set; }
     }
- 
+    [BindProperties]
     public class Permission
     {
         [Key]
@@ -157,7 +160,7 @@ namespace QuanLySinhVien.Data
 
         public virtual ICollection<Account> Accounts { get; set; }
     }
-
+    [BindProperties]
     public class PermisionDetail
     {
         [Key]
@@ -166,17 +169,19 @@ namespace QuanLySinhVien.Data
         public string ActionName { get; set; }
 
         public string ActionCode { get; set; }
+       
 
         [ForeignKey("Permission")]
         public int PermisstionID { get; set; }
 
         public virtual Permission Pesmission { get; set; }
     }
-
+   
+    [BindProperties]
     public class Student
 
     {
-        [BindProperty]
+       
         [Key]
         public int ID { get; set; }
 
@@ -186,12 +191,12 @@ namespace QuanLySinhVien.Data
         public string StudentCode { get; set; }
 
         public string Name { get; set; }
-       
-        public int Sex
+      
+        
+        public Sex Sex
         {
-            get;set;
+            get; set;
         }
-
         public string Email { get; set; }
 
         public string Nation { get; set; }
@@ -223,6 +228,7 @@ namespace QuanLySinhVien.Data
         public DateTime LastModify { get; set; }
 
         public string Contact { get; set; }
+      
 
         [ForeignKey("Parent")]
         public int ParentID { get; set; }
@@ -239,5 +245,10 @@ namespace QuanLySinhVien.Data
         public virtual Parent Parent { get; set; }
 
         public virtual ICollection<Mark> Marks { get; set; }
+    }
+    public enum Sex:Int32
+    {
+        Nam=1,
+        Nữ=0
     }
 }

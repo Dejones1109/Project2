@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QuanLySinhVien.Data.Mark>;
+﻿@model  IEnumerable<BangDiemCaNhanViewModel>;
 @{
     ViewData["Title"] = "Bảng điểm cá nhân";
 }
@@ -20,28 +20,32 @@
                 <th>Mã HP</th>
                 <th>Tên Học Phần</th>
                 <th>TC</th>
-                
+
                 <th>Điểm QT</th>
                 <th>Điểm thi</th>
                 <th>Điểm Trung Bình</th>
+                <th>Điểm Chữ</th>
             </tr>
 
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <th>@item.Semester.Name</th>
-                    <th>@item.Semester.Code</th>
-                    <th>@item.Subjects.Name</th>
-                    <th>@item.Subjects.Credits</th>
+            <tr>
+                <th>@item.Mark.Semester.Name</th>
+                <th>@item.Mark.Semester.Code</th>
+                <th>@item.Mark.Subjects.Name</th>
+                <th>@item.Mark.Subjects.Credits</th>
+                <th>@item.Mark.MarkMidTerm</th>
+                <th>@item.Mark.MarkFinalExam</th>
+                <th>
+                    @item.MarkAverage
+                </th>
+                <th>
+                    @item.markWork
+                </th>
 
-                    <th>@item.MarkMidTerm</th>
-                    <th>@item.MarkFinalExam</th>
-                    <th>
-                        <a id="result"></a>
-                    </th>
-                </tr>
+            </tr>
             }
         </tbody>
     </table>
@@ -52,60 +56,26 @@
         <thead class="bg-primary text-white ">
             <tr>
                 <th>Học kỳ</th>
-                <th>GPA</th>
-                <th>CPA</th>
+                <th>GPA</th>             
                 <th>TC qua</th>
                 <th>TC Tích lũy</th>
-                <th>TC nợ ĐK</th>
-                <th>TC ĐK</th>
-                <th>Trình độ</th>
-                <th>Mức CC</th>
-                <th>Thiếu điểm</th>
-
+             
             </tr>
 
         </thead>
         <tbody>
-
+           
             <tr>
-                <th>hello</th>
-                <th>hello</th>
-                <th>hello</th>
-                <th>hello</th>
-                <th>hello</th>
-                <th>hello</th>
-                <th>hello</th>
-                <th>hello</th>
-                <th>hello</th>
-                <th>hello</th>
+                <th>@Html.</th>
+                <th>@Html.DisplayName("GPA")</th>
+                <th>@Html.DisplayName("GPA")</th>
+                <th>@Html.DisplayName("GPA")</th>
             </tr>
+
+
 
         </tbody>
     </table>
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-    $('#linky').click(function AverageMark(MarkMidTerm, MarkFinalExam, RateMidTerm, RateFinalExam)
-    {
-        $.ajax({
-            type: "Get",
-            url: "@Url.Action("AverageMark")",
-            data: { MarkMidTerm: MarkMidTerm, MarkFinalExam: MarkFinalExam, RateMidTerm: RateMidTerm, RateFinalExam: RateFinalExam},
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            
-            success: function (msg) {
-               
-                $("#result").show(msg);
-            
-               
-            },
-            error: function (req, status, error) {
-                alert(error);
-            }
-        });
-    }
-    );
-</script>

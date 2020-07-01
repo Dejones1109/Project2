@@ -9,6 +9,6 @@ namespace QuanLySinhVien.Helper
     public interface IMarkHelper
     {
         List<Mark> GetMarks(int studentID);
-        Mark GetAverageMark(int studentID);
+      
     }
 }
